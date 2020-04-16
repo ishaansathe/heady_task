@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "f1f0c644-6656-43bf-820f-2122f05a003a",
+		"name": "heady",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "health_check",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"followRedirects": true,
+				"followAuthorizationHeader": false,
+				"removeRefererHeaderOnRedirect": false,
+				"tlsPreferServerCiphers": false,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5050/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5050",
+					"path": [
+						""
+					]
+				},
+				"description": "health check"
+			},
+			"response": []
+		},
+		{
+			"name": "get_category",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"followRedirects": true,
+				"followAuthorizationHeader": false,
+				"removeRefererHeaderOnRedirect": false,
+				"tlsPreferServerCiphers": false,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5050/category?category=motorcycles",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5050",
+					"path": [
+						"category"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "motorcycles"
+						}
+					]
+				},
+				"description": "get category data based on category"
+			},
+			"response": []
+		},
+		{
+			"name": "add_product",
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"followAuthorizationHeader": false,
+				"removeRefererHeaderOnRedirect": false,
+				"tlsPreferServerCiphers": false,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product_data\":[{\"name\": \"hayabusa\", \"price\": \"500000\", \"categories\" : [\"Electric Appliances\",\"cars\" , \"motorcycles\"], \"description\": \"the best bike\"  }]\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5050/product",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5050",
+					"path": [
+						"product"
+					]
+				},
+				"description": "add product to db"
+			},
+			"response": []
+		},
+		{
+			"name": "add category",
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"followAuthorizationHeader": false,
+				"removeRefererHeaderOnRedirect": false,
+				"tlsPreferServerCiphers": false,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category\":\"Motorcycles\" , \n\t\"child_category\":[\"Sports\" , \"Street bikes\" , \"Cruiser\" ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5050/category",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5050",
+					"path": [
+						"category"
+					]
+				},
+				"description": "add category to Db"
+			},
+			"response": []
+		},
+		{
+			"name": "update data in db ",
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"followAuthorizationHeader": false,
+				"removeRefererHeaderOnRedirect": false,
+				"tlsPreferServerCiphers": false,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\t\"pr_name\":\"Jeans\" \n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5050/product",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5050",
+					"path": [
+						"product"
+					]
+				},
+				"description": "update db items"
+			},
+			"response": []
+		},
+		{
+			"name": "get product based on  category",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"followRedirects": true,
+				"followAuthorizationHeader": false,
+				"removeRefererHeaderOnRedirect": false,
+				"tlsPreferServerCiphers": false,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5050/product/cars",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5050",
+					"path": [
+						"product",
+						"cars"
+					]
+				},
+				"description": "pass a category and get product details"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
