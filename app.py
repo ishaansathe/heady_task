@@ -27,6 +27,7 @@ def add_get_category():
         category_to_find = request.args.get("category" , None)
         if category_to_find == None:
             return jsonify({"success":False , "msg":"No category found"}),404
+        category_to_find = category_to_find.lower()
         get_data = db.category.find({"category":category_to_find})
         get_data = list(get_data)
         category_list = [] 
@@ -49,7 +50,7 @@ def add_get_category():
         data = request.get_json()
         category =data.get("category" , None)
         if category !=None:
-            category  = category.upper()
+            category  = category.lower()
         child_category = data.get("child_category" , [])
         if category == None:
             return jsonify({"success":False , "msg":"No category found"}),404
@@ -74,6 +75,7 @@ def add_product():
         return jsonify({"success":False , "msg":"Products list not found"}) , 404
     else :
         for data in products_data:
+            data["PID"] = datetime.datetime.utcnow().strftime('%d.%m.%Y %H:%M:%S.%f')
             db.products.insert_one(data)
         return jsonify({"success":True , "msg":"products is written successfully"}),200
 # getting all categories in db 
@@ -85,7 +87,8 @@ def get_products(category):
         response_code:
         200: All products are returned
         404: category does not exist'''
-    data = request.get_json()
+    #data = request.get_json()
+    category = category.lower()
     #category = data.get("category")
     find = db.products.find({"categories":{"$in":[category]}} , {"_id":0})
     ret = list(find)
