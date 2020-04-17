@@ -73,12 +73,12 @@ def add_product():
     products_data = data.get("product_data" , None)
     find_products = db.products.find({},{"_id":0 , "PID":0})
     find_products = list(find_products)
-    for prods in find_products:
-        for data_2 in products_data:
+    for data_2 in products_data:
+        for prods in find_products:
             json_diff = diff(data_2 , prods)
    
-        if json_diff == {}:
-            return jsonify({"msg":"The entered json matches with {} please change the data".format(prods)   , "success":False} )
+            if json_diff == {}:
+                return jsonify({"msg":"The entered json matches with {} please change the data".format(prods)   , "success":False} )
     
     if products_data == None:
         return jsonify({"success":False , "msg":"Products list not found"}) , 404
@@ -124,6 +124,7 @@ def update_data():
     update_data = data.get("update_list" , None)
     try:
         for data in update_data:
+            data["updatedAt"] = datetime.datetime.utcnow().strftime('%d-%m-%Y-%H-%M-%S.%f')
             result = db.products.update_one({"name":name} , {"$set":data})
         return jsonify({"success":True , "msg":"products is updated successfully"}),200
     except pymongo.errors.PyMongoError as e:
