@@ -21,6 +21,8 @@ pip3 install flask
 
 pip3 install pymongo 
 
+pip3 install jsondiff
+
 sudo apt update && sudo apt upgrade -y
 
 sudo apt install mongodb

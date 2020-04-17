@@ -3,6 +3,7 @@ from flask import (Flask, Response, abort, jsonify, redirect, request,
 import uuid , pymongo
 from global_variable import secret_key ,  mongo_db as db 
 import datetime
+from jsondiff import diff
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = secret_key
 
@@ -68,14 +69,25 @@ def add_product():
         200:New product  is created 
         404:the given product list is not passed 
             '''
-    
     data = request.get_json()
     products_data = data.get("product_data" , None)
+    find_products = db.products.find({},{"_id":0 , "PID":0})
+    find_products = list(find_products)
+    for prods in find_products:
+        for data_2 in products_data:
+            json_diff = diff(data_2 , prods)
+   
+        if json_diff == {}:
+            return jsonify({"msg":"The entered json matches with {} please change the data".format(prods)   , "success":False} )
+    
     if products_data == None:
         return jsonify({"success":False , "msg":"Products list not found"}) , 404
     else :
         for data in products_data:
-            data["PID"] = datetime.datetime.utcnow().strftime('%d.%m.%Y %H:%M:%S.%f')
+            convert_categories_to_lower = [categories.lower() for categories in data.get("categories")]
+            print (convert_categories_to_lower)
+            data["categories"] = convert_categories_to_lower
+            data["PID"] = datetime.datetime.utcnow().strftime('%d%m%Y%H%M%S%f')
             db.products.insert_one(data)
         return jsonify({"success":True , "msg":"products is written successfully"}),200
 # getting all categories in db 

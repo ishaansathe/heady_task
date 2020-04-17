@@ -182,48 +182,6 @@
 			"response": []
 		},
 		{
-			"name": "update data in db ",
-			"protocolProfileBehavior": {
-				"followRedirects": true,
-				"followAuthorizationHeader": false,
-				"removeRefererHeaderOnRedirect": false,
-				"tlsPreferServerCiphers": false,
-				"followOriginalHttpMethod": false
-			},
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\n\t\"pr_name\":\"Jeans\" \n\t\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://0.0.0.0:5050/product",
-					"protocol": "http",
-					"host": [
-						"0",
-						"0",
-						"0",
-						"0"
-					],
-					"port": "5050",
-					"path": [
-						"product"
-					]
-				},
-				"description": "update db items"
-			},
-			"response": []
-		},
-		{
 			"name": "get product based on  category",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true,
@@ -264,6 +222,48 @@
 					]
 				},
 				"description": "pass a category and get product details"
+			},
+			"response": []
+		},
+		{
+			"name": "update db",
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"followAuthorizationHeader": false,
+				"removeRefererHeaderOnRedirect": false,
+				"tlsPreferServerCiphers": false,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header":[] ,  
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pr_name\":\"MIxer\" , \n\t\"update_list\":[{\"name\":\"MIxer\" , \"price\":4567 , \"description\":\"mixer with good quality\"}]\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5050/product",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5050",
+					"path": [
+						"product"
+					]
+				},
+				"description": "update product data"
 			},
 			"response": []
 		}
